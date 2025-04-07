@@ -1,0 +1,5 @@
+1 50 "WiFi, proiector, parcare" 200.50
+2 30 "WiFi, aer conditionat" 150.00
+3 100 "Scena, sunet profesional, lumini" 500.75
+4 20 "WiFi, parcare" 100.00
+5 75 "WiFi, proiector, aer conditionat, catering" 350.00
