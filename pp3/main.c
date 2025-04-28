@@ -84,7 +84,7 @@ void salveazaRezervari()
 
 void afiseazaSali()
 {
-    printf("Sali disponibile:\n");
+    printf("\033[36mSali disponibile:\033[0m\n");
     int i;
     for(i=0;i<nr_sali;i++)
         printf("ID: %d, Capacitate: %d, Facilitati: %s, Pret: %.2f\n",sali[i].id,sali[i].capacitate,sali[i].facilitati,sali[i].pret);
@@ -112,13 +112,13 @@ void rezervaSala(int id_sala,const char *nume_client,const char *perioada)
     strcpy(rezervari[nr_rezervari].nume_client,nume_client);
     strcpy(rezervari[nr_rezervari].perioada,perioada);
     nr_rezervari++;
-    printf("Rezervare efectuata cu succes!\n");
+    printf("\033[32mRezervare efectuata cu succes!\n\033[0m");
 }
 
 
 void afiseazaRezervari()
 {
-    printf("Rezervari existente:\n");
+    printf("\033[36mRezervari existente:\033[0m\n");
     int i;
     for(i=0;i<nr_rezervari;i++)
         printf("ID Sala: %d, Client: %s, Perioada: %s\n",rezervari[i].id_sala,rezervari[i].nume_client,rezervari[i].perioada);
@@ -137,7 +137,7 @@ void anuleazaRezervare(const char *nume_client,const char *perioada)
 
             nr_rezervari--;
             rezervari=realloc(rezervari,nr_rezervari*sizeof(rezervare));
-            printf("Rezervare anulata cu succes!\n");
+            printf("\033[32mRezervare anulata cu succes!\033[0m\n");
             break;
         }
     }
@@ -153,14 +153,14 @@ int main()
     do
     {
         system(CLEAR_SCREEN);
-        printf("\nMeniu:\n");
-        printf("1. Afiseaza sali\n");
-        printf("2. Cauta sala\n");
-        printf("3. Rezerva sala\n");
-        printf("4. Afiseaza rezervari\n");
-        printf("5. Anuleaza rezervare\n");
-        printf("6. Iesire\n");
-        printf("Alege o optiune: ");
+        printf("\033[36m\nMeniu:\033[0m\n");
+        printf("\033[33m1. Afiseaza sali\033[0m\n");
+        printf("\033[33m2. Cauta sala\033[0m\n");
+        printf("\033[33m3. Rezerva sala\033[0m\n");
+        printf("\033[33m4. Afiseaza rezervari\033[0m\n");
+        printf("\033[33m5. Anuleaza rezervare\033[0m\n");
+        printf("\033[33m6. Iesire\033[0m\n");
+        printf("\033[36mAlege o optiune: \033[0m\n");
         scanf("%d", &optiune);
         while(getchar()!='\n');
         switch (optiune)
@@ -195,6 +195,7 @@ int main()
                 fgets(perioada,20,stdin);
                 perioada[strcspn(perioada,"\n")]=0;
                 rezervaSala(id_sala,nume,perioada);
+                salveazaRezervari();
                 break;
             }
             case 4:
@@ -210,6 +211,7 @@ int main()
                 fgets(perioada,20,stdin);
                 perioada[strcspn(perioada,"\n")]=0;
                 anuleazaRezervare(nume,perioada);
+                salveazaRezervari();
                 break;
             }
             case 6:
@@ -217,12 +219,12 @@ int main()
                 break;
         }
         if(optiune>6){
-            printf("\nOptiune invalida. Apasa Enter pentru a continua...");
+            printf("\033[31mOptiune invalida.\033[0m Apasa Enter pentru a continua...");
             while(getchar()!='\n');
         }
         else
         if(optiune!=6){
-            printf("\nApasa Enter pentru a continua...");
+            printf("\033[31m\nApasa Enter pentru a continua...\033[0m");
             while(getchar()!='\n');}
     } while(optiune!=6);
     free(sali);
