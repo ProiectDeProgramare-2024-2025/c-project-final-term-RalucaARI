@@ -87,22 +87,22 @@ void afiseazaSali()
     printf("\033[36mSali disponibile:\033[0m\n");
     int i;
     for(i=0;i<nr_sali;i++)
-        printf("ID: %d, Capacitate: %d, Facilitati: %s, Pret: %.2f\n",sali[i].id,sali[i].capacitate,sali[i].facilitati,sali[i].pret);
+        printf("\033[31mID:\033[0m %d, \033[31mCapacitate:\033[0m %d, \033[31mFacilitati:\033[0m %s, \033[31mPret:\033[0m %.2f\n",sali[i].id,sali[i].capacitate,sali[i].facilitati,sali[i].pret);
 }
 
 void cautaSala(int capacitate, const char *facilitati)
 {
-    printf("Sali care corespund criteriilor:\n");
+    printf("Sali care corespund criteriilor\n");
     int gasit=0;
     int i;
     for(i=0;i<nr_sali;i++)
         if (sali[i].capacitate>=capacitate && strstr(sali[i].facilitati,facilitati))
         {
-            printf("ID: %d, Capacitate: %d, Facilitati: %s, Pret: %.2f\n",sali[i].id,sali[i].capacitate,sali[i].facilitati,sali[i].pret);
+            printf("\033[31mID:\033[0m %d, \033[31mCapacitate:\033[0m %d, \033[31mFacilitati:\033[0m %s, \033[31mPret:\033[0m %.2f\n",sali[i].id,sali[i].capacitate,sali[i].facilitati,sali[i].pret);
             gasit = 1;
         }
     if(!gasit)
-        printf("Nu s-au gasit sali potrivite.\n");
+        printf("\033[32mNu s-au gasit sali potrivite.\033[0m\n");
 }
 
 void rezervaSala(int id_sala,const char *nume_client,const char *perioada)
@@ -121,7 +121,7 @@ void afiseazaRezervari()
     printf("\033[36mRezervari existente:\033[0m\n");
     int i;
     for(i=0;i<nr_rezervari;i++)
-        printf("ID Sala: %d, Client: %s, Perioada: %s\n",rezervari[i].id_sala,rezervari[i].nume_client,rezervari[i].perioada);
+        printf("\033[31mID Sala:\033[0m %d, \033[31mClient:\033[0m %s, \033[31mPerioada:\033[0m %s\n",rezervari[i].id_sala,rezervari[i].nume_client,rezervari[i].perioada);
 }
 
 void anuleazaRezervare(const char *nume_client,const char *perioada)
@@ -142,7 +142,7 @@ void anuleazaRezervare(const char *nume_client,const char *perioada)
         }
     }
     if (!gasit)
-        printf("Rezervarea nu a fost gasita.\n");
+        printf("\033[32mRezervarea nu a fost gasita.\033[0m\n");
 }
 
 int main()
@@ -153,13 +153,14 @@ int main()
     do
     {
         system(CLEAR_SCREEN);
+        printf("\033[32m----Rezervare sala evenimente----\033[0m\n");
         printf("\033[36m\nMeniu:\033[0m\n");
-        printf("\033[33m1. Afiseaza sali\033[0m\n");
-        printf("\033[33m2. Cauta sala\033[0m\n");
-        printf("\033[33m3. Rezerva sala\033[0m\n");
-        printf("\033[33m4. Afiseaza rezervari\033[0m\n");
-        printf("\033[33m5. Anuleaza rezervare\033[0m\n");
-        printf("\033[33m6. Iesire\033[0m\n");
+        printf("1. \033[33mAfiseaza sali\033[0m\n");
+        printf("2. \033[33mCauta sala\033[0m\n");
+        printf("3. \033[33mRezerva sala\033[0m\n");
+        printf("4. \033[33mAfiseaza rezervari\033[0m\n");
+        printf("5. \033[33mAnuleaza rezervare\033[0m\n");
+        printf("6. \033[33mIesire\033[0m\n");
         printf("\033[36mAlege o optiune: \033[0m\n");
         scanf("%d", &optiune);
         while(getchar()!='\n');
@@ -172,10 +173,10 @@ int main()
             {
                 int capacitate;
                 char facilitati[256];
-                printf("Introduceti capacitatea minima: ");
+                printf("\033[36mIntroduceti capacitatea minima: \033[0m");
                 scanf("%d",&capacitate);
                 while (getchar()!='\n');
-                printf("Introduceti facilitati: ");
+                printf("\033[36mIntroduceti facilitati \033[0m(ex: WiFi,proiector,parcare,Scena,lumini,aer conditionat,sunet profesional): ");
                 fgets(facilitati,256,stdin);
                 facilitati[strcspn(facilitati,"\n")]=0;
                 cautaSala(capacitate,facilitati);
@@ -185,13 +186,13 @@ int main()
             {
                 int id_sala;
                 char nume[50],perioada[20];
-                printf("Introduceti ID-ul salii: ");
+                printf("\033[36mIntroduceti ID-ul salii: \033[0m");
                 scanf("%d",&id_sala);
                 while(getchar()!='\n');
-                printf("Introduceti numele clientului: ");
+                printf("\033[36mIntroduceti numele clientului: \033[0m");
                 fgets(nume,50,stdin);
                 nume[strcspn(nume, "\n")]=0;
-                printf("Introduceti perioada: ");
+                printf("\033[36mIntroduceti perioada: \033[0m");
                 fgets(perioada,20,stdin);
                 perioada[strcspn(perioada,"\n")]=0;
                 rezervaSala(id_sala,nume,perioada);
@@ -204,10 +205,10 @@ int main()
             case 5:
             {
                 char nume[50],perioada[20];
-                printf("Introduceti numele clientului pentru anulare: ");
+                printf("\033[36mIntroduceti numele clientului pentru anulare: \033[0m");
                 fgets(nume,50,stdin);
                 nume[strcspn(nume,"\n")]=0;
-                printf("Introduceti perioada rezervarii: ");
+                printf("\033[36mIntroduceti perioada rezervarii: \033[0m");
                 fgets(perioada,20,stdin);
                 perioada[strcspn(perioada,"\n")]=0;
                 anuleazaRezervare(nume,perioada);
