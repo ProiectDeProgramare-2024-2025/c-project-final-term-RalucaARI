@@ -92,7 +92,7 @@ void afiseazaSali()
 
 void cautaSala(int capacitate, const char *facilitati)
 {
-    printf("Sali care corespund criteriilor\n");
+    printf("Sali care corespund criteriilor:\n");
     int gasit=0;
     int i;
     for(i=0;i<nr_sali;i++)
@@ -192,7 +192,7 @@ int main()
                 printf("\033[36mIntroduceti numele clientului: \033[0m");
                 fgets(nume,50,stdin);
                 nume[strcspn(nume, "\n")]=0;
-                printf("\033[36mIntroduceti perioada: \033[0m");
+                printf("\033[36mIntroduceti perioada \033[0m(ex:06.07.2025):");
                 fgets(perioada,20,stdin);
                 perioada[strcspn(perioada,"\n")]=0;
                 rezervaSala(id_sala,nume,perioada);
@@ -208,7 +208,7 @@ int main()
                 printf("\033[36mIntroduceti numele clientului pentru anulare: \033[0m");
                 fgets(nume,50,stdin);
                 nume[strcspn(nume,"\n")]=0;
-                printf("\033[36mIntroduceti perioada rezervarii: \033[0m");
+                printf("\033[36mIntroduceti perioada rezervarii \033[0m(ex:06.07.2025):");
                 fgets(perioada,20,stdin);
                 perioada[strcspn(perioada,"\n")]=0;
                 anuleazaRezervare(nume,perioada);
